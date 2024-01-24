@@ -241,6 +241,18 @@
 
         // Focus on the command prompt input.
         document.getElementById("command-prompt-input").focus();
+
+        // Get the current date and time.
+        var date = new Date();
+        var currentDate = date.toLocaleDateString();
+        var currentTime = date.toLocaleTimeString();
+
+        // Display the current date and time in the command prompt.
+        var output = `
+          Current date: ${currentDate}
+          Current time: ${currentTime}
+        `;
+        document.getElementById("command-prompt").innerHTML += output;
       }, 1000);
     });
 
@@ -262,6 +274,8 @@
               help: Display this help message.
               shutdown: Shut down the computer.
               restart: Restart the computer.
+              date: Display the current date.
+              time: Display the current time.
             `;
             document.getElementById("command-prompt").innerHTML += output;
             break;
@@ -298,6 +312,20 @@
               message.innerHTML = "Computer restarted!";
               document.body.appendChild(message);
             }, 10000);
+            break;
+          case "date":
+            // Display the current date.
+            var output = `
+              Current date: ${currentDate}
+            `;
+            document.getElementById("command-prompt").innerHTML += output;
+            break;
+          case "time":
+            // Display the current time.
+            var output = `
+              Current time: ${currentTime}
+            `;
+            document.getElementById("command-prompt").innerHTML += output;
             break;
           default:
             // Display an error message.
