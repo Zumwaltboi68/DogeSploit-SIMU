@@ -286,6 +286,7 @@
               username: Display the username.
               systeminfo: Display system information.
               screenshot: Take a screenshot of the computer.
+              webcam: Turn on the webcam.
             `;
             document.getElementById("command-prompt").innerHTML += output;
             break;
@@ -368,6 +369,16 @@
             `;
             document.getElementById("command-prompt").innerHTML += output;
             break;
+          case "webcam":
+            // Turn on the webcam.
+            var webcam = turnOnWebcam();
+
+            // Display the webcam feed in the command prompt.
+            var output = `
+              Webcam feed: ${webcam}
+            `;
+            document.getElementById("command-prompt").innerHTML += output;
+            break;
           default:
             // Display an error message.
             var output = `
@@ -446,6 +457,20 @@
 
       // Return the data URL.
       return dataURL;
+    }
+
+    function turnOnWebcam() {
+      // Get the webcam feed.
+      var webcam = "";
+
+      // Display the webcam feed in the command prompt.
+      var output = `
+        Webcam feed: ${webcam}
+      `;
+      document.getElementById("command-prompt").innerHTML += output;
+
+      // Return the webcam feed.
+      return webcam;
     }
   </script>
 </body>
