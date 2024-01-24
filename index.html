@@ -242,19 +242,21 @@
         // Focus on the command prompt input.
         document.getElementById("command-prompt-input").focus();
 
-        // Get the current date, time, operating system, and username.
+        // Get the current date, time, operating system, username, and system information.
         var date = new Date();
         var currentDate = date.toLocaleDateString();
         var currentTime = date.toLocaleTimeString();
         var os = navigator.platform;
         var username = ""; // Get the username from the operating system.
+        var systemInfo = getSystemInfo();
 
-        // Display the current date, time, operating system, and username in the command prompt.
+        // Display the current date, time, operating system, username, and system information in the command prompt.
         var output = `
           Current date: ${currentDate}
           Current time: ${currentTime}
           Operating system: ${os}
           Username: ${username}
+          System information: ${systemInfo}
         `;
         document.getElementById("command-prompt").innerHTML += output;
       }, 1000);
@@ -282,6 +284,7 @@
               time: Display the current time.
               os: Display the operating system.
               username: Display the username.
+              systeminfo: Display system information.
             `;
             document.getElementById("command-prompt").innerHTML += output;
             break;
@@ -347,6 +350,13 @@
             `;
             document.getElementById("command-prompt").innerHTML += output;
             break;
+          case "systeminfo":
+            // Display system information.
+            var output = `
+              System information: ${systemInfo}
+            `;
+            document.getElementById("command-prompt").innerHTML += output;
+            break;
           default:
             // Display an error message.
             var output = `
@@ -363,6 +373,47 @@
 
       // Return whether the IP address matches the regular expression.
       return regex.test(ipAddress);
+    }
+
+    function getSystemInfo() {
+      // Get system information.
+      var systemInfo = "";
+
+      // Add the operating system to the system information.
+      systemInfo += `Operating system: ${os}\n`;
+
+      // Add the username to the system information.
+      systemInfo += `Username: ${username}\n`;
+
+      // Add the computer name to the system information.
+      systemInfo += `Computer name: ${computerName}\n`;
+
+      // Add the system manufacturer to the system information.
+      systemInfo += `System manufacturer: ${systemManufacturer}\n`;
+
+      // Add the system model to the system information.
+      systemInfo += `System model: ${systemModel}\n`;
+
+      // Add the system type to the system information.
+      systemInfo += `System type: ${systemType}\n`;
+
+      // Add the system processor to the system information.
+      systemInfo += `System processor: ${systemProcessor}\n`;
+
+      // Add the system memory to the system information.
+      systemInfo += `System memory: ${systemMemory}\n`;
+
+      // Add the system storage to the system information.
+      systemInfo += `System storage: ${systemStorage}\n`;
+
+      // Add the system graphics card to the system information.
+      systemInfo += `System graphics card: ${systemGraphicsCard}\n`;
+
+      // Add the system network card to the system information.
+      systemInfo += `System network card: ${systemNetworkCard}\n`;
+
+      // Return the system information.
+      return systemInfo;
     }
   </script>
 </body>
