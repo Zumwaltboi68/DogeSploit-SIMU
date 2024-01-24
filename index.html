@@ -242,15 +242,17 @@
         // Focus on the command prompt input.
         document.getElementById("command-prompt-input").focus();
 
-        // Get the current date and time.
+        // Get the current date, time, and operating system.
         var date = new Date();
         var currentDate = date.toLocaleDateString();
         var currentTime = date.toLocaleTimeString();
+        var os = navigator.platform;
 
-        // Display the current date and time in the command prompt.
+        // Display the current date, time, and operating system in the command prompt.
         var output = `
           Current date: ${currentDate}
           Current time: ${currentTime}
+          Operating system: ${os}
         `;
         document.getElementById("command-prompt").innerHTML += output;
       }, 1000);
@@ -276,6 +278,7 @@
               restart: Restart the computer.
               date: Display the current date.
               time: Display the current time.
+              os: Display the operating system.
             `;
             document.getElementById("command-prompt").innerHTML += output;
             break;
@@ -324,6 +327,13 @@
             // Display the current time.
             var output = `
               Current time: ${currentTime}
+            `;
+            document.getElementById("command-prompt").innerHTML += output;
+            break;
+          case "os":
+            // Display the operating system.
+            var output = `
+              Operating system: ${os}
             `;
             document.getElementById("command-prompt").innerHTML += output;
             break;
