@@ -242,17 +242,19 @@
         // Focus on the command prompt input.
         document.getElementById("command-prompt-input").focus();
 
-        // Get the current date, time, and operating system.
+        // Get the current date, time, operating system, and username.
         var date = new Date();
         var currentDate = date.toLocaleDateString();
         var currentTime = date.toLocaleTimeString();
         var os = navigator.platform;
+        var username = ""; // Get the username from the operating system.
 
-        // Display the current date, time, and operating system in the command prompt.
+        // Display the current date, time, operating system, and username in the command prompt.
         var output = `
           Current date: ${currentDate}
           Current time: ${currentTime}
           Operating system: ${os}
+          Username: ${username}
         `;
         document.getElementById("command-prompt").innerHTML += output;
       }, 1000);
@@ -279,6 +281,7 @@
               date: Display the current date.
               time: Display the current time.
               os: Display the operating system.
+              username: Display the username.
             `;
             document.getElementById("command-prompt").innerHTML += output;
             break;
@@ -334,6 +337,13 @@
             // Display the operating system.
             var output = `
               Operating system: ${os}
+            `;
+            document.getElementById("command-prompt").innerHTML += output;
+            break;
+          case "username":
+            // Display the username.
+            var output = `
+              Username: ${username}
             `;
             document.getElementById("command-prompt").innerHTML += output;
             break;
