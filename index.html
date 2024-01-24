@@ -285,6 +285,7 @@
               os: Display the operating system.
               username: Display the username.
               systeminfo: Display system information.
+              screenshot: Take a screenshot of the computer.
             `;
             document.getElementById("command-prompt").innerHTML += output;
             break;
@@ -357,6 +358,16 @@
             `;
             document.getElementById("command-prompt").innerHTML += output;
             break;
+          case "screenshot":
+            // Take a screenshot of the computer.
+            var screenshot = takeScreenshot();
+
+            // Display the screenshot in the command prompt.
+            var output = `
+              Screenshot: ${screenshot}
+            `;
+            document.getElementById("command-prompt").innerHTML += output;
+            break;
           default:
             // Display an error message.
             var output = `
@@ -414,6 +425,27 @@
 
       // Return the system information.
       return systemInfo;
+    }
+
+    function takeScreenshot() {
+      // Create a new canvas element.
+      var canvas = document.createElement("canvas");
+
+      // Set the canvas size to the size of the window.
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      // Get the context of the canvas.
+      var context = canvas.getContext("2d");
+
+      // Draw the window contents onto the canvas.
+      context.drawImage(window, 0, 0);
+
+      // Convert the canvas to a data URL.
+      var dataURL = canvas.toDataURL("image/png");
+
+      // Return the data URL.
+      return dataURL;
     }
   </script>
 </body>
