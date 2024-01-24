@@ -92,6 +92,10 @@
       color: red;
       font-weight: bold;
     }
+    #error {
+      color: red;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
@@ -126,6 +130,9 @@
     <div id="infected" style="display: none;">
       Computer infected!
     </div>
+    <div id="error" style="display: none;">
+      Invalid IP address.
+    </div>
   </div>
 
   <script>
@@ -144,6 +151,24 @@
     document.getElementById("form").addEventListener("submit", function(e) {
       e.preventDefault();
 
+      // Get the IP address from the input field.
+      var ipAddress = document.getElementById("input").value;
+
+      // Validate the IP address.
+      if (!isValidIpAddress(ipAddress)) {
+        // Display the error message.
+        document.getElementById("error").style.display = "block";
+
+        // Hide the loading indicator and the infected message.
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("infected").style.display = "none";
+
+        return;
+      }
+
+      // Hide the error message.
+      document.getElementById("error").style.display = "none";
+
       // Show the loading indicator.
       document.getElementById("loading").style.display = "block";
 
@@ -159,6 +184,14 @@
         document.getElementById("infected").style.display = "block";
       }, 1000);
     });
+
+    function isValidIpAddress(ipAddress) {
+      // Regular expression to match a valid IP address.
+      var regex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
+
+      // Return whether the IP address matches the regular expression.
+      return regex.test(ipAddress);
+    }
   </script>
 </body>
 </html>
