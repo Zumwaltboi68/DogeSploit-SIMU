@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DogeSploit.Exe</title>
+  <style>
+    body {
+      background-color: black;
+      color: green;
+      font-family: Arial, sans-serif;
+    }
+    #window {
+      width: 600px;
+      height: 400px;
+      margin: 0 auto;
+      border: 1px solid white;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #181818;
+    }
+    #titlebar {
+      width: 100%;
+      height: 30px;
+      background-color: #282828;
+      border-bottom: 1px solid white;
+      padding: 5px;
+      color: white;
+    }
+    #title {
+      float: left;
+      font-size: 20px;
+    }
+    #buttons {
+      float: right;
+    }
+    #button {
+      width: 20px;
+      height: 20px;
+      background-color: #484848;
+      border: 1px solid white;
+      border-radius: 5px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+    #content {
+      width: 100%;
+      height: calc(100% - 30px);
+      overflow-y: scroll;
+    }
+    #text {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    #input {
+      width: 100%;
+      height: 30px;
+      margin-top: 10px;
+      padding: 5px;
+      border: 1px solid white;
+      border-radius: 5px;
+    }
+    #button-container {
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+    }
+    #button-submit {
+      width: 100px;
+      height: 30px;
+      background-color: #383838;
+      border: 1px solid white;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="window">
+    <div id="titlebar">
+      <div id="title">DogeSploit.Exe</div>
+      <div id="buttons">
+        <div id="button" onclick="minimize()">_</div>
+        <div id="button" onclick="maximize()">☐</div>
+        <div id="button" onclick="close()">✕</div>
+      </div>
+    </div>
+    <div id="content">
+      <div id="text">
+        Welcome to DogeSploit.Exe, the most powerful virus ever created. With this virus, you can control any computer in the world.
+      </div>
+      <br>
+      <div id="text">
+        To use DogeSploit.Exe, simply enter the IP address of the computer you want to control in the input box below. Then, click the "Infect" button.
+      </div>
+      <br>
+      <form id="form">
+        <input type="text" id="input" placeholder="IP Address">
+        <div id="button-container">
+          <button type="submit" id="button-submit">Infect</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function minimize() {
+      // Code to minimize the window.
+    }
+
+    function maximize() {
+      // Code to maximize the window.
+    }
+
+    function close() {
+      // Code to close the window.
+    }
+
+    document.getElementById("form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      // Code to infect the computer with the virus.
+    });
+  </script>
+</body>
+</html>
