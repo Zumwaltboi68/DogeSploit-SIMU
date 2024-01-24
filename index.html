@@ -96,6 +96,32 @@
       color: red;
       font-size: 14px;
     }
+    #command-prompt {
+      width: 100%;
+      height: 200px;
+      margin-top: 10px;
+      padding: 5px;
+      border: 1px solid white;
+      border-radius: 5px;
+      background-color: black;
+      color: white;
+      font-family: Consolas, Monaco, Lucida Console, Courier New, monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-y: scroll;
+    }
+    #command-prompt-input {
+      width: 100%;
+      height: 30px;
+      margin-top: 10px;
+      padding: 5px;
+      border: 1px solid white;
+      border-radius: 5px;
+      background-color: black;
+      color: white;
+      font-family: Consolas, Monaco, Lucida Console, Courier New, monospace;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
@@ -132,6 +158,22 @@
     </div>
     <div id="error" style="display: none;">
       Invalid IP address.
+    </div>
+    <div id="command-prompt" style="display: none;">
+      <pre>
+        C:\> cd \\\\192.168.1.100\\c$\\
+        C:\WINDOWS\system32> dir
+        Volume in drive C is Windows
+        Volume Serial Number is 1234-5678
+
+        Directory of C:\WINDOWS\system32
+
+        ...
+
+        C:\WINDOWS\system32> shutdown -s -t 0
+        The system is shutting down in 0 seconds...
+      </pre>
+      <input type="text" id="command-prompt-input">
     </div>
   </div>
 
@@ -182,7 +224,89 @@
 
         // Show the infected message.
         document.getElementById("infected").style.display = "block";
+
+        // Play a sound effect.
+        var audio = new Audio("infected.wav");
+        audio.play();
+
+        // Make the window shake.
+        var window = document.getElementById("window");
+        window.classList.add("shake");
+        setTimeout(function() {
+          window.classList.remove("shake");
+        }, 1000);
+
+        // Display the command prompt.
+        document.getElementById("command-prompt").style.display = "block";
+
+        // Focus on the command prompt input.
+        document.getElementById("command-prompt-input").focus();
       }, 1000);
+    });
+
+    document.getElementById("command-prompt-input").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        // Get the command from the input field.
+        var command = document.getElementById("command-prompt-input").value;
+
+        // Clear the input field.
+        document.getElementById("command-prompt-input").value = "";
+
+        // Execute the command.
+        switch (command) {
+          case "help":
+            // Display a list of commands.
+            var output = `
+              Available commands:
+
+              help: Display this help message.
+              shutdown: Shut down the computer.
+              restart: Restart the computer.
+            `;
+            document.getElementById("command-prompt").innerHTML += output;
+            break;
+          case "shutdown":
+            // Shut down the computer.
+            var output = `
+              Shutting down the computer...
+            `;
+            document.getElementById("command-prompt").innerHTML += output;
+
+            // After 10 seconds, close the command prompt and display a message saying that the computer has been shut down.
+            setTimeout(function() {
+              document.getElementById("command-prompt").remove();
+
+              var message = document.createElement("div");
+              message.id = "message";
+              message.innerHTML = "Computer shut down!";
+              document.body.appendChild(message);
+            }, 10000);
+            break;
+          case "restart":
+            // Restart the computer.
+            var output = `
+              Restarting the computer...
+            `;
+            document.getElementById("command-prompt").innerHTML += output;
+
+            // After 10 seconds, close the command prompt and display a message saying that the computer has been restarted.
+            setTimeout(function() {
+              document.getElementById("command-prompt").remove();
+
+              var message = document.createElement("div");
+              message.id = "message";
+              message.innerHTML = "Computer restarted!";
+              document.body.appendChild(message);
+            }, 10000);
+            break;
+          default:
+            // Display an error message.
+            var output = `
+              Invalid command.
+            `;
+            document.getElementById("command-prompt").innerHTML += output;
+        }
+      }
     });
 
     function isValidIpAddress(ipAddress) {
