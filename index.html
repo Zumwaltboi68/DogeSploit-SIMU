@@ -16,6 +16,15 @@
       padding: 20px;
       border-radius: 10px;
       background-color: #181818;
+      animation: appear 1s ease-in-out;
+    }
+    @keyframes appear {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
     #titlebar {
       width: 100%;
@@ -72,6 +81,17 @@
       color: white;
       cursor: pointer;
     }
+    #loading {
+      width: 100%;
+      height: 30px;
+      margin-top: 10px;
+      text-align: center;
+      font-size: 14px;
+    }
+    #infected {
+      color: red;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -100,6 +120,12 @@
         </div>
       </form>
     </div>
+    <div id="loading" style="display: none;">
+      Loading...
+    </div>
+    <div id="infected" style="display: none;">
+      Computer infected!
+    </div>
   </div>
 
   <script>
@@ -118,7 +144,20 @@
     document.getElementById("form").addEventListener("submit", function(e) {
       e.preventDefault();
 
-      // Code to infect the computer with the virus.
+      // Show the loading indicator.
+      document.getElementById("loading").style.display = "block";
+
+      // Hide the infect button.
+      document.getElementById("button-submit").style.display = "none";
+
+      // Simulate the infection process.
+      setTimeout(function() {
+        // Hide the loading indicator.
+        document.getElementById("loading").style.display = "none";
+
+        // Show the infected message.
+        document.getElementById("infected").style.display = "block";
+      }, 1000);
     });
   </script>
 </body>
